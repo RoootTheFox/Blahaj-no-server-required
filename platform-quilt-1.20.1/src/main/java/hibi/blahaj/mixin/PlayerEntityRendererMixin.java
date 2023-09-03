@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
+import hibi.blahaj.Common;
 import hibi.blahaj.CuddlyItem;
 
 @Mixin(PlayerEntityRenderer.class)
@@ -23,7 +24,7 @@ public class PlayerEntityRendererMixin {
 	)
 	private static void cuddleBlahaj(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> ci) {
 		ItemStack lv = player.getStackInHand(hand);
-		if(lv.getItem() instanceof CuddlyItem) {
+		if(lv.getItem() instanceof CuddlyItem || Common.isCustomBlahaj(lv)) {
 			ci.setReturnValue(ArmPose.CROSSBOW_HOLD);
 			ci.cancel();
 		}

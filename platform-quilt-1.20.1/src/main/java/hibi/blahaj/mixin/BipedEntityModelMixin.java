@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At.Shift;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import hibi.blahaj.Common;
 import hibi.blahaj.CuddlyItem;
 import net.minecraft.client.model.ModelPart;
 import net.minecraft.client.render.entity.model.BipedEntityModel;
@@ -32,7 +33,8 @@ public class BipedEntityModelMixin {
 		cancellable = true
 	)
 	public void poseArms(LivingEntity entity, CallbackInfo ci) {
-		if(entity.getMainHandStack().getItem() instanceof CuddlyItem || entity.getOffHandStack().getItem() instanceof CuddlyItem) {
+		if(entity.getMainHandStack().getItem() instanceof CuddlyItem || entity.getOffHandStack().getItem() instanceof CuddlyItem
+			|| (Common.isCustomBlahaj(entity.getMainHandStack()) || Common.isCustomBlahaj(entity.getOffHandStack()))) {
 			this.rightArm.pitch = -0.95F;
 			this.rightArm.yaw = (float) (-Math.PI / 8);
 			this.leftArm.pitch = -0.90F;

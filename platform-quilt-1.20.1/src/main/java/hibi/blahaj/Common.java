@@ -20,6 +20,7 @@ import net.minecraft.util.Identifier;
 import net.minecraft.village.TradeOffer;
 import net.minecraft.village.TradeOffers;
 import net.minecraft.village.VillagerProfession;
+import net.minecraft.nbt.NbtCompound;
 
 public class Common {
 
@@ -97,5 +98,17 @@ public class Common {
 		KLAPPAR_HAJ_ID = new Identifier("blahaj", "gray_shark");
 		BLAVINGAD_ID = new Identifier("blahaj", "blue_whale");
 		BREAD_ID = new Identifier("blahaj", "bread");
+	}
+
+	// this was written without any syntax highlighting/linting/autocompletion LMAO
+	public static boolean isCustomBlahaj(ItemStack stack) {
+		NbtCompound nbt = stack.getNbt();
+
+		int customModelData = -1;
+		if (nbt != null) {
+			customModelData = nbt != null ? nbt.getInt("CustomModelData") : -1;
+		}
+
+		return customModelData == 10497106;
 	}
 }

@@ -1,0 +1,14 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "minecraft:item/glistering_melon_slice"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "custom_model_data": 10497106
+      },
+      "model": "blahaj:item/blue_shark"
+    }
+  ]
+}
